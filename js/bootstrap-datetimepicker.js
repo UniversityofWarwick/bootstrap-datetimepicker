@@ -54,10 +54,10 @@
   function timeZoneAbbreviation() {
     var abbreviation, date, formattedStr, i, len, matchedStrings, ref, str;
     date = (new Date()).toString();
-    formattedStr = ((ref = date.split('(')[1]) != null ? ref.slice(0, -1) : 0) || date.split(' ');
+    formattedStr = ((ref = date.split('(')[1]) !== null ? ref.slice(0, -1) : 0) || date.split(' ');
     if (formattedStr instanceof Array) {
       matchedStrings = [];
-      for (var i = 0, len = formattedStr.length; i < len; i++) {
+      for (i = 0, len = formattedStr.length; i < len; i++) {
         str = formattedStr[i];
         if ((abbreviation = (ref = str.match(/\b[A-Z]+\b/)) !== null) ? ref[0] : 0) {
           matchedStrings.push(abbreviation);
@@ -654,7 +654,7 @@
       });
     },
 
-    hour_minute: "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]",
+    hour_minute: '^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]',
 
     update: function () {
       var date, fromArgs = false;
@@ -673,8 +673,8 @@
         fromArgs = false;
       }
 
-      if (typeof date === "string") {
-        if (new RegExp(this.hour_minute).test(date) || new RegExp(this.hour_minute + ":[0-5][0-9]").test(date)) {
+      if (typeof date === 'string') {
+        if (new RegExp(this.hour_minute).test(date) || new RegExp(this.hour_minute + ':[0-5][0-9]').test(date)) {
           date = this.getDate()
         }
       }
@@ -837,7 +837,7 @@
       meridianOld = '';
       var minutesDisabled = this.minutesDisabled || [];
       d = new Date(this.viewDate);
-      for (var i = 0; i < 60; i += this.minuteStep) {
+      for (i = 0; i < 60; i += this.minuteStep) {
         if (minutesDisabled.indexOf(i) !== -1) continue;
         d.setUTCMinutes(i);
         d.setUTCSeconds(0);
@@ -889,7 +889,7 @@
         .find('td');
       year -= 1;
       d = new Date(this.viewDate);
-      for (var i = -1; i < 11; i++) {
+      for (i = -1; i < 11; i++) {
         d.setUTCFullYear(year);
         classes = this.onRenderYear(d);
         if (i === -1 || i === 10) {
@@ -1811,18 +1811,18 @@
       } else {
         throw new Error('Invalid format type.');
       }
-      var date = [],
+      var dateParts = [],
         seps = $.extend([], format.separators);
       for (var i = 0, cnt = format.parts.length; i < cnt; i++) {
         if (seps.length) {
-          date.push(seps.shift());
+          dateParts.push(seps.shift());
         }
-        date.push(val[format.parts[i]]);
+        dateParts.push(val[format.parts[i]]);
       }
       if (seps.length) {
-        date.push(seps.shift());
+        dateParts.push(seps.shift());
       }
-      return date.join('');
+      return dateParts.join('');
     },
     convertViewMode:  function (viewMode) {
       switch (viewMode) {
