@@ -2,12 +2,16 @@
 <html>
 <head>
     <title></title>
-    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <meta charset="UTF-8">
+    <link href="./bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="../css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+    <link href="../node_modules/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet" media="screen">
 </head>
 
 <body>
 <div class="container">
+    <h1>Examples <i class="fas fa-camera"></i></h1>
+
     <form action="" class="form-horizontal"  role="form">
         <fieldset>
             <legend>Test</legend>
@@ -38,6 +42,16 @@
                 </div>
 				<input type="hidden" id="dtp_input3" value="" /><br/>
             </div>
+
+            <div class="form-group">
+                <label for="dtp_input4" class="col-md-2 control-label">DateTime Picking (Font Awesome, other options)</label>
+                <div class="input-group date form_datetime2 col-md-5" data-date="" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input4">
+                    <input class="form-control" size="16" type="text" value="">
+                    <span tabindex="0" role="button" class="input-group-addon"><i class="fas fa-times"></i></span>
+					<span class="input-group-addon"><i class="fas fa-calendar"></i></span>
+                </div>
+				<input type="hidden" id="dtp_input4" value="" />
+            </div>
         </fieldset>
     </form>
 </div>
@@ -57,8 +71,19 @@
 		forceParse: 0,
         showMeridian: 1
     });
+    $('.form_datetime2').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+        fontAwesome: true
+    });
 	$('.form_date').datetimepicker({
-        language:  'fr',
+        //language:  'fr',
         weekStart: 1,
         todayBtn:  1,
 		autoclose: 1,
@@ -68,7 +93,7 @@
 		forceParse: 0
     });
 	$('.form_time').datetimepicker({
-        language:  'fr',
+        //language:  'fr',
         weekStart: 1,
         todayBtn:  1,
 		autoclose: 1,

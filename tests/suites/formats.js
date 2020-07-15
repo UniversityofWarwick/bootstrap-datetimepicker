@@ -246,7 +246,11 @@ test('Untrimmed datetime value', patch_date(function(Date){
   equal(this.input.val(), '2012-03-05 00:00');
 }));
 
-
+/*
+ * This fails when run during summer because it always outputs the
+ * timezone name of _now_ rather than the given date, so we get e.g.
+ * British Summer Time instead of UTC 
+ */
 test('With timezone option', patch_date(function(Date){
   this.input
       .val('2012-03-05')

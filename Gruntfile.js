@@ -4,6 +4,9 @@ module.exports = (grunt) => {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    qunit: {
+      all: { src: ['tests/tests.html'] }
+    },
     jshint: {
       options: {
         jshintrc: '.jshintrc'
@@ -21,5 +24,8 @@ module.exports = (grunt) => {
     }
   })
 
-  grunt.registerTask('default', ['jshint', 'versioncheck'])
+  grunt.registerTask('default', ['jshint', 'versioncheck']);
+
+  grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.registerTask('test', ['qunit:all'])
 }

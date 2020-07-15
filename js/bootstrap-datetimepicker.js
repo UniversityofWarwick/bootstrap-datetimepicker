@@ -448,7 +448,7 @@
 
     getDate: function () {
       var d = this.getUTCDate();
-      if (d === null) {
+      if (!d) {
         return null;
       }
       return new Date(d.getTime() + (d.getTimezoneOffset() * 60000));
@@ -500,14 +500,20 @@
     },
 
     setValue: function () {
+      function setIfChanged($el, value) {
+        if ($el.val() !== value) {
+          $el.val(value);
+        }
+      }
+
       var formatted = this.getFormattedDate();
       if (!this.isInput) {
         if (this.component) {
-          this.element.find('input').val(formatted);
+          setIfChanged(this.element.find('input'), formatted);
         }
         this.element.data('date', formatted);
       } else {
-        this.element.val(formatted);
+        setIfChanged(this.element, formatted);
       }
       if (this.linkField) {
         $('#' + this.linkField).val(this.getFormattedDate(this.linkFormat));
@@ -894,6 +900,8 @@
       }
       yearCont.html(html);
       this.place();
+
+      this.picker.find('.active').attr('aria-selected', 'date');
     },
 
     updateNavArrows: function () {

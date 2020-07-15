@@ -1,35 +1,50 @@
 {
-  "name": "bootstrap-datetime-picker",
-  "homepage": "http://www.malot.fr/bootstrap-datetimepicker/",
-  "description": "Both Date and Time picker widget based on twitter bootstrap",
-  "version": "2.4.4",
+  "name": "@universityofwarwick/bootstrap-datetime-picker",
+  "description": "Date/Time picker widget based on Twitter Bootstrap",
+  "version": "2.5.0",
   "license": "Apache 2.0",
-  "author": {
-    "name": "Sebastien Malot"
-  },
-  "maintainers": [{
-      "name": "Sebastien Malot"
-    },{
-      "name": "Christian Vaas",
-      "email": "christianvaas@auspex.eu"
+  "maintainers": [
+    {
+      "name": "University of Warwick",
+      "email": "webdev@warwick.ac.uk"
     }
   ],
   "keywords": [
-    "bootstrap", "datetime", "picker"
+    "bootstrap",
+    "datetime",
+    "picker"
   ],
+  "scripts": {
+    "grunt": "grunt",
+    "lint": "grunt jshint",
+    "minify-js": "terser js/bootstrap-datetimepicker.js -o js/bootstrap-datetimepicker.min.js --source-map url=bootstrap-datetimepicker.min.js.map",
+    "build-less": "lessc less/datetimepicker.less > css/bootstrap-datetimepicker.css",
+    "minify-css": "postcss css/bootstrap-datetimepicker.css -m -o css/bootstrap-datetimepicker.min.css -u cssnano",
+    "build-all": "npm run minify-js && npm run build-less && npm run minify-css",
+    "prepublishOnly": "npm run build-all",
+    "test": "grunt test"
+  },
   "repository": {
     "type": "git",
-    "url":  "git://github.com/smalot/bootstrap-datetimepicker.git"
+    "url": "git://github.com/universityofwarwick/bootstrap-datetimepicker.git"
   },
   "bugs": {
-    "url":  "https://github.com/smalot/bootstrap-datetimepicker"
+    "url": "https://github.com/universityofwarwick/bootstrap-datetimepicker"
   },
   "main": "./js/bootstrap-datetimepicker.js",
   "devDependencies": {
+    "cssnano": "4.1.10",
     "grunt": "^1.0.1",
     "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-qunit": "4.0.0",
     "grunt-version-check": "^0.3.7",
     "jshint": "^2.9.4",
-    "load-grunt-tasks": "^3.4.1"
+    "less": "3.12.0",
+    "load-grunt-tasks": "^3.4.1",
+    "postcss-cli": "7.1.1",
+    "terser": "4.8.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "5.13.1"
   }
 }
